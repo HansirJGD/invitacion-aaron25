@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aaron Daniel 25</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #091226;
+      --bg-2: #0f1f3c;
+      --bg-3: #153354;
+      --accent-1: #18ebb0;
+      --accent-2: #ffd166;
+      --accent-3: #3db5ff;
+      --text: #f3f7ff;
+      --muted: #b5c4e3;
+      --card: rgba(255, 255, 255, 0.08);
+      --stroke: rgba(255, 255, 255, 0.16);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; scroll-behavior: smooth; }
+
+    body {
+      font-family: "Sora", sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      background:
+        radial-gradient(60vw 60vw at -10% -10%, #2a4d7d 0%, transparent 60%),
+        radial-gradient(50vw 50vw at 120% 0%, #14586f 0%, transparent 55%),
+        linear-gradient(140deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .bg-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.25;
+      z-index: 0;
+      animation: drift 16s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .blob-a { width: 360px; height: 360px; background: #20d6ff; top: 10%; left: -120px; }
+    .blob-b { width: 420px; height: 420px; background: #14f195; bottom: -160px; right: -120px; animation-delay: 2s; }
+    .blob-c { width: 280px; height: 280px; background: #ffd166; top: 55%; left: 65%; animation-delay: 5s; }
+
+    @keyframes drift {
+      from { transform: translateY(-12px) translateX(-8px) scale(1); }
+      to { transform: translateY(18px) translateX(10px) scale(1.08); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: min(1060px, 92%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 56px 0 40px;
+    }
+
+    .chip {
+      display: inline-block;
+      border: 1px solid rgba(24, 235, 176, 0.45);
+      color: var(--accent-1);
+      border-radius: 999px;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      padding: 8px 14px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.16);
+      backdrop-filter: blur(8px);
+    }
+
+    .name {
+      font-size: clamp(34px, 8vw, 84px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      background: linear-gradient(110deg, #ffffff 5%, #cde7ff 45%, #a9ffdf 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .age {
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(74px, 17vw, 180px);
+      line-height: 0.9;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255, 209, 102, 0.48);
+      margin-top: 10px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .age::after {
+      content: attr(data-age);
+      position: absolute;
+      inset: 0;
+      color: rgba(255, 209, 102, 0.15);
+      -webkit-text-stroke: 0;
+      filter: blur(22px);
+      transform: translateY(6px);
+    }
+
+    .subtitle {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: clamp(15px, 2.7vw, 19px);
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .countdown {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(70px, 115px));
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .cd {
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 12px 10px;
+    }
+
+    .cd-num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(26px, 5vw, 36px);
+      color: var(--accent-2);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .cd-label {
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #d7def1;
+    }
+
+    .pulse {
+      margin-top: 18px;
+      color: #d2e8ff;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      animation: beat 1.8s ease-in-out infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.03); }
+    }
+
+    .section {
+      margin: 26px 0;
+      border: 1px solid var(--stroke);
+      background: var(--card);
+      border-radius: 22px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-1);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(23px, 4.2vw, 36px);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .info-card {
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(0,0,0,0.15);
+    }
+
+    .info-k {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9bc3ef;
+      margin-bottom: 6px;
+    }
+
+    .info-v {
+      font-size: 15px;
+      color: #eff5ff;
+      line-height: 1.5;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 10px;
+      min-height: 340px;
+    }
+
+    .ph {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.25);
+    }
+
+    .ph:nth-child(1) { grid-row: span 2; min-height: 340px; }
+
+    .ph img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.86) saturate(1.08);
+      transition: transform .6s ease, filter .6s ease;
+    }
+
+    .ph:hover img {
+      transform: scale(1.05);
+      filter: brightness(1) saturate(1.2);
+    }
+
+    .ph::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.45), transparent 45%);
+      pointer-events: none;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: .25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.14);
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #00c98a, #1ca8ff);
+      color: #04101f;
+      border-color: transparent;
+      box-shadow: 0 10px 26px rgba(28, 168, 255, .25);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.06);
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .tiny {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #b5c3df;
+    }
+
+    .footer {
+      text-align: center;
+      color: #c9d8f6;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 34px 0 22px;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 860px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .ph:nth-child(1) { grid-column: 1 / -1; grid-row: auto; min-height: 220px; }
+    }
+
+    @media (max-width: 520px) {
+      .hero { padding-top: 42px; }
+      .countdown { gap: 8px; grid-template-columns: repeat(4, minmax(64px, 1fr)); }
+      .cd { border-radius: 12px; padding: 10px 8px; }
+      .section { padding: 18px; border-radius: 16px; }
+      .gallery { grid-template-columns: 1fr; }
+      .ph:nth-child(1) { min-height: 200px; }
+      .ph { min-height: 130px; }
+      .actions { flex-direction: column; }
+      .btn { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blob blob-a"></div>
+  <div class="bg-blob blob-b"></div>
+  <div class="bg-blob blob-c"></div>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="chip">Invitacion especial</div>
+        <h1 class="name" id="nameText">Aaron Daniel Vilcanqui Maquera</h1>
+        <div class="age" id="ageText" data-age="25">25</div>
+        <p class="subtitle" id="subtitleText">Una noche brutal entre amigos en Chaclacayo</p>
+
+        <div class="countdown" aria-label="Cuenta regresiva">
+          <div class="cd"><div class="cd-num" id="d">00</div><div class="cd-label">Dias</div></div>
+          <div class="cd"><div class="cd-num" id="h">00</div><div class="cd-label">Horas</div></div>
+          <div class="cd"><div class="cd-num" id="m">00</div><div class="cd-label">Min</div></div>
+          <div class="cd"><div class="cd-num" id="s">00</div><div class="cd-label">Seg</div></div>
+        </div>
+
+        <div class="pulse" id="statusText">Preparando la mejor noche del anio</div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-label">Detalles del evento</div>
+      <h2 class="section-title">Cuando y donde</h2>
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="info-k">Fecha</div>
+          <div class="info-v" id="dateText">Por confirmar</div>
+        </article>
+        <article class="info-card">
+          <div class="info-k">Hora</div>
+          <div class="info-v" id="timeText">Por confirmar</div>
+        </article>
+        <article class="info-card">
+          <div class="info-k">Direccion</div>
+          <div class="info-v" id="addressText">Ex Fundo El, Los Palmos Lt1, Lurigancho-Chosica 15472</div>
+        </article>
+        <article class="info-card">
+          <div class="info-k">Referencia</div>
+          <div class="info-v" id="refText">A 5 min del Puente Los Angeles - Chaclacayo</div>
+        </article>
+      </div>
+      <div class="actions">
+        <a class="btn" id="mapBtn" href="#" target="_blank" rel="noopener noreferrer">Ver ubicacion</a>
+        <button class="btn" id="calendarBtn" type="button">Agregar al calendario</button>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-label">Airbnb spot</div>
+      <h2 class="section-title">Asi se ve el lugar</h2>
+      <div class="gallery" id="gallery"></div>
+      <p class="tiny">Usa tus fotos con estos nombres: foto1.webp, foto2.webp, foto3.webp, foto4.webp</p>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-label">RSVP</div>
+      <h2 class="section-title">Confirma tu asistencia</h2>
+      <p style="color: var(--muted); margin-bottom: 14px;">
+        Avisa por WhatsApp para cerrar lista y coordinar todo.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" id="waBtn" href="#" target="_blank" rel="noopener noreferrer">Confirmar por WhatsApp</a>
+        <button class="btn" id="shareBtn" type="button">Compartir invitacion</button>
+      </div>
+    </section>
+
+    <div class="footer">Aaron 25 - Private Birthday Session</div>
+  </main>
+
+  <script>
+    const CONFIG = {
+      celebrantName: "Aaron Daniel Vilcanqui Maquera",
+      age: 25,
+      subtitle: "Una noche brutal entre amigos en Chaclacayo",
+
+      eventDateISO: "2026-05-02T20:00:00-05:00",
+      displayDate: "Sabado 2 de mayo de 2026",
+      displayTime: "8:00 PM",
+
+      address: "Ex Fundo El, Los Palmos Lt1, Lurigancho-Chosica 15472",
+      reference: "A 5 min del Puente Los Angeles - Chaclacayo",
+      mapsQuery: "Ex Fundo El Los Palmos Lt1 Lurigancho Chosica 15472",
+
+      whatsappNumber: "51904098128",
+      whatsappMessage: "Hola Aaron, confirmo mi asistencia a tu cumple de 25.",
+
+      photos: [
+        "foto1.webp",
+        "foto2.webp",
+        "foto3.webp",
+        "foto4.webp"
+      ],
+
+      fallbackPhotos: [
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=80",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80",
+        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80"
+      ]
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function pad(n) {
+      return String(n).padStart(2, "0");
+    }
+
+    function hydrateContent() {
+      $("nameText").textContent = CONFIG.celebrantName;
+      $("ageText").textContent = CONFIG.age;
+      $("ageText").setAttribute("data-age", CONFIG.age);
+      $("subtitleText").textContent = CONFIG.subtitle;
+
+      $("dateText").textContent = CONFIG.displayDate;
+      $("timeText").textContent = CONFIG.displayTime;
+      $("addressText").textContent = CONFIG.address;
+      $("refText").textContent = CONFIG.reference;
+
+      const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.mapsQuery);
+      $("mapBtn").href = mapsUrl;
+
+      const waUrl =
+        "https://wa.me/" +
+        CONFIG.whatsappNumber +
+        "?text=" +
+        encodeURIComponent(CONFIG.whatsappMessage);
+      $("waBtn").href = waUrl;
+    }
+
+    function mountGallery() {
+      const gallery = $("gallery");
+      gallery.innerHTML = "";
+      CONFIG.photos.forEach((src, i) => {
+        const box = document.createElement("div");
+        box.className = "ph";
+        const img = document.createElement("img");
+        img.alt = "Foto del Airbnb " + (i + 1);
+        img.loading = "lazy";
+        img.src = src;
+        img.onerror = function () {
+          this.onerror = null;
+          this.src = CONFIG.fallbackPhotos[i] || CONFIG.fallbackPhotos[0];
+        };
+        box.appendChild(img);
+        gallery.appendChild(box);
+      });
+    }
+
+    function setupCountdown() {
+      const target = new Date(CONFIG.eventDateISO).getTime();
+      const status = $("statusText");
+
+      function tick() {
+        const now = Date.now();
+        const diff = target - now;
+
+        if (isNaN(target) || diff <= 0) {
+          $("d").textContent = "00";
+          $("h").textContent = "00";
+          $("m").textContent = "00";
+          $("s").textContent = "00";
+          status.textContent = "Modo fiesta activado";
+          return;
+        }
+
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+
+        $("d").textContent = pad(d);
+        $("h").textContent = pad(h);
+        $("m").textContent = pad(m);
+        $("s").textContent = pad(s);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    function toICSDate(d) {
+      const yyyy = d.getUTCFullYear();
+      const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
+      const dd = String(d.getUTCDate()).padStart(2, "0");
+      const hh = String(d.getUTCHours()).padStart(2, "0");
+      const mi = String(d.getUTCMinutes()).padStart(2, "0");
+      const ss = String(d.getUTCSeconds()).padStart(2, "0");
+      return yyyy + mm + dd + "T" + hh + mi + ss + "Z";
+    }
+
+    function setupCalendar() {
+      $("calendarBtn").addEventListener("click", () => {
+        const start = new Date(CONFIG.eventDateISO);
+        if (isNaN(start.getTime())) {
+          alert("Primero define una fecha valida en CONFIG.eventDateISO");
+          return;
+        }
+
+        const end = new Date(start.getTime() + 5 * 60 * 60 * 1000);
+        const now = new Date();
+
+        const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Aaron25//Invitacion//ES
+BEGIN:VEVENT
+UID:aaron25-${Date.now()}@invite
+DTSTAMP:${toICSDate(now)}
+DTSTART:${toICSDate(start)}
+DTEND:${toICSDate(end)}
+SUMMARY:Cumple de ${CONFIG.celebrantName}
+DESCRIPTION:Cumpleanos de ${CONFIG.age} anos. Confirmar por WhatsApp.
+LOCATION:${CONFIG.address}
+END:VEVENT
+END:VCALENDAR`;
+
+        const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "cumple-aaron-25.ics";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    function setupShare() {
+      $("shareBtn").addEventListener("click", async () => {
+        const data = {
+          title: "Invitacion - Aaron 25",
+          text: "Estas invitado al cumple de Aaron.",
+          url: location.href
+        };
+
+        try {
+          if (navigator.share) {
+            await navigator.share(data);
+          } else {
+            await navigator.clipboard.writeText(location.href);
+            alert("Enlace copiado. Pegalo en WhatsApp.");
+          }
+        } catch (_) {}
+      });
+    }
+
+    function revealOnScroll() {
+      const items = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      items.forEach((el) => io.observe(el));
+    }
+
+    hydrateContent();
+    mountGallery();
+    setupCountdown();
+    setupCalendar();
+    setupShare();
+    revealOnScroll();
+  </script>
+</body>
+</html>
