@@ -218,42 +218,141 @@
     .party-actions {
       margin-top: 18px;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 10px;
       justify-content: center;
-      flex-wrap: wrap;
     }
 
     .party-btn {
       border: none;
       border-radius: 999px;
-      padding: 12px 20px;
+      padding: 14px 26px;
+      min-width: 290px;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #04101f;
       background: linear-gradient(120deg, #ffd166, #ff8f66, #00d4ff);
-      box-shadow: 0 14px 40px rgba(255, 155, 85, 0.45);
+      box-shadow: 0 16px 42px rgba(255, 155, 85, 0.5);
       cursor: pointer;
       transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
     }
 
     .party-btn:hover {
-      transform: translateY(-2px) scale(1.03);
-      filter: saturate(1.1);
-      box-shadow: 0 18px 46px rgba(255, 155, 85, 0.6);
+      transform: translateY(-2px) scale(1.04);
+      filter: saturate(1.2);
+      box-shadow: 0 20px 56px rgba(255, 155, 85, 0.65);
     }
 
     .party-btn.active {
       background: linear-gradient(120deg, #18ebb0, #3db5ff);
-      box-shadow: 0 18px 48px rgba(34, 196, 255, 0.45);
+      box-shadow: 0 20px 58px rgba(34, 196, 255, 0.55);
     }
 
     .party-hint {
       font-size: 11px;
       color: #c2d6ff;
-      opacity: 0.85;
+      opacity: 0.9;
       letter-spacing: 0.05em;
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .party-windows {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 45;
+      overflow: hidden;
+    }
+
+    .party-window {
+      position: absolute;
+      min-width: 170px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: linear-gradient(130deg, rgba(12, 25, 53, 0.9), rgba(18, 47, 90, 0.65));
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: #eff5ff;
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+    }
+
+    .party-window.show {
+      animation: floatWindow 7s ease-in-out infinite;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .party-window strong {
+      display: block;
+      color: #18ebb0;
+      font-size: 10px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    @keyframes floatWindow {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.02); }
+    }
+
+    .yt-dock {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: 320px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(5, 15, 35, 0.9);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      z-index: 60;
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .yt-dock.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .yt-dock-head {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #a9ffdf;
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .yt-player {
+      width: 320px;
+      height: 180px;
+    }
+
+    .party-emoji {
+      position: absolute;
+      bottom: -30px;
+      font-size: 18px;
+      opacity: 0.9;
+      animation: emojiRise linear forwards;
+    }
+
+    @keyframes emojiRise {
+      to {
+        transform: translateY(-120vh) translateX(var(--drift));
+        opacity: 0;
+      }
     }
 
     @keyframes beat {
@@ -450,24 +549,28 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 50;
+      z-index: 55;
       overflow: hidden;
     }
 
     .strobe {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 60%);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 80, 170, 0.25), transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(80, 200, 255, 0.25), transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(255, 220, 120, 0.2), transparent 55%);
       opacity: 0;
     }
 
     .strobe.active {
-      animation: strobeFlash 0.8s linear infinite;
+      animation: strobeFlash 0.45s linear infinite;
     }
 
     @keyframes strobeFlash {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 0.22; }
+      0%, 100% { opacity: 0.02; }
+      30% { opacity: 0.26; }
+      65% { opacity: 0.1; }
     }
 
     .balloon {
@@ -478,6 +581,7 @@
       border-radius: 50% 50% 48% 48%;
       opacity: 0.9;
       animation: floatUp linear forwards;
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
     }
 
     .balloon::after {
@@ -530,6 +634,15 @@
       .btn { text-align: center; }
       .party-actions { flex-direction: column; }
       .crew-grid { grid-template-columns: 1fr; }
+      .yt-dock {
+        width: calc(100vw - 20px);
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+      }
+      .yt-player {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -556,7 +669,7 @@
         <div class="pulse" id="statusText">Preparando la mejor noche del año</div>
         <div class="party-actions">
           <button class="party-btn" id="partyBtn" type="button">Activar Modo Project X</button>
-          <div class="party-hint">Pon tu archivo musica en la carpeta como fiesta-track.mp3</div>
+          <div class="party-hint">Toca para iniciar la pista de YouTube y encender efectos legendarios</div>
         </div>
       </div>
     </section>
@@ -617,10 +730,15 @@
     <div class="footer">Aaron 25 - Private Birthday Session</div>
   </main>
 
-  <audio id="partyAudio" src="fiesta-track.mp3" preload="auto" loop></audio>
   <canvas id="confettiCanvas" class="fx-layer"></canvas>
   <div class="fx-layer" id="balloonLayer"></div>
+  <div class="fx-layer" id="emojiLayer"></div>
   <div class="fx-layer strobe" id="strobeLayer"></div>
+  <div class="party-windows" id="partyWindows"></div>
+  <div class="yt-dock" id="ytPlayerDock">
+    <div class="yt-dock-head">Project X Soundtrack</div>
+    <div id="ytPlayer" class="yt-player"></div>
+  </div>
 
   <script>
     const CONFIG = {
@@ -638,6 +756,7 @@
 
       whatsappNumber: "51904098128",
       whatsappMessage: "Hola Aaron, confirmo mi asistencia a tu cumple de 25.",
+      youtubeTrackId: "fZIRuMZA4_0",
 
       photos: [
         "foto1.webp",
@@ -735,42 +854,112 @@
 
     function setupPartyMode() {
       const btn = $("partyBtn");
-      const audio = $("partyAudio");
       const strobe = $("strobeLayer");
       const balloonLayer = $("balloonLayer");
+      const emojiLayer = $("emojiLayer");
+      const windowsLayer = $("partyWindows");
+      const ytDock = $("ytPlayerDock");
       const canvas = $("confettiCanvas");
       const ctx = canvas.getContext("2d");
 
       let on = false;
       let confetti = [];
+      let fireworks = [];
       let confettiFrame = null;
       let balloonInterval = null;
+      let emojiInterval = null;
+      let fireworkInterval = null;
+
+      let ytPlayer = null;
+      let ytReady = false;
+
+      function ensureYouTubePlayer() {
+        if (ytPlayer) return;
+        if (window.YT && window.YT.Player) {
+          ytPlayer = new window.YT.Player("ytPlayer", {
+            height: "180",
+            width: "320",
+            videoId: CONFIG.youtubeTrackId,
+            playerVars: {
+              autoplay: 0,
+              controls: 1,
+              rel: 0,
+              modestbranding: 1
+            },
+            events: {
+              onReady: () => { ytReady = true; }
+            }
+          });
+          return;
+        }
+
+        window.onYouTubeIframeAPIReady = () => {
+          ytPlayer = new window.YT.Player("ytPlayer", {
+            height: "180",
+            width: "320",
+            videoId: CONFIG.youtubeTrackId,
+            playerVars: {
+              autoplay: 0,
+              controls: 1,
+              rel: 0,
+              modestbranding: 1
+            },
+            events: {
+              onReady: () => { ytReady = true; }
+            }
+          });
+        };
+      }
 
       function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
 
-      function spawnConfettiBurst() {
-        const colors = ["#ffd166", "#18ebb0", "#3db5ff", "#ff8f66", "#ffffff"];
-        for (let i = 0; i < 160; i++) {
+      function spawnConfettiBurst(mult = 1) {
+        const colors = ["#ffd166", "#18ebb0", "#3db5ff", "#ff8f66", "#ffffff", "#ff5bbd"];
+        const count = Math.floor(180 * mult);
+        for (let i = 0; i < count; i++) {
           confetti.push({
             x: Math.random() * canvas.width,
-            y: -20 - Math.random() * canvas.height * 0.4,
-            r: 2 + Math.random() * 5,
+            y: -20 - Math.random() * canvas.height * 0.25,
+            r: 2 + Math.random() * 6,
             c: colors[Math.floor(Math.random() * colors.length)],
-            vx: -2 + Math.random() * 4,
-            vy: 1 + Math.random() * 4,
+            vx: -3 + Math.random() * 6,
+            vy: 1 + Math.random() * 5,
+            g: 0.05 + Math.random() * 0.04,
             rot: Math.random() * Math.PI,
-            vr: -0.2 + Math.random() * 0.4,
-            life: 160 + Math.random() * 80
+            vr: -0.35 + Math.random() * 0.7,
+            life: 190 + Math.random() * 100,
+            shape: Math.random() > 0.5 ? "rect" : "circle"
           });
         }
       }
 
-      function drawConfetti() {
+      function launchFirework() {
+        const cx = canvas.width * (0.2 + Math.random() * 0.6);
+        const cy = canvas.height * (0.12 + Math.random() * 0.35);
+        const colors = ["#ffd166", "#18ebb0", "#3db5ff", "#ff8f66", "#ff5bbd", "#ffffff"];
+        for (let i = 0; i < 70; i++) {
+          const angle = (Math.PI * 2 * i) / 70;
+          const speed = 1.4 + Math.random() * 3.3;
+          fireworks.push({
+            x: cx,
+            y: cy,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            c: colors[Math.floor(Math.random() * colors.length)],
+            life: 70 + Math.random() * 35,
+            r: 1.5 + Math.random() * 2.8
+          });
+        }
+      }
+
+      function drawPartyFx() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         confetti.forEach((p) => {
+          p.vy += p.g;
           p.x += p.vx;
           p.y += p.vy;
           p.rot += p.vr;
@@ -779,12 +968,35 @@
           ctx.translate(p.x, p.y);
           ctx.rotate(p.rot);
           ctx.fillStyle = p.c;
-          ctx.fillRect(-p.r, -p.r * 0.6, p.r * 2, p.r * 1.2);
+          if (p.shape === "rect") {
+            ctx.fillRect(-p.r, -p.r * 0.6, p.r * 2, p.r * 1.2);
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
           ctx.restore();
         });
-        confetti = confetti.filter((p) => p.life > 0 && p.y < canvas.height + 20);
-        if (on || confetti.length > 0) {
-          confettiFrame = requestAnimationFrame(drawConfetti);
+
+        fireworks.forEach((f) => {
+          f.x += f.vx;
+          f.y += f.vy;
+          f.vx *= 0.99;
+          f.vy *= 0.99;
+          f.life -= 1;
+          ctx.beginPath();
+          ctx.fillStyle = f.c;
+          ctx.globalAlpha = Math.max(0, f.life / 100);
+          ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        });
+
+        confetti = confetti.filter((p) => p.life > 0 && p.y < canvas.height + 40);
+        fireworks = fireworks.filter((f) => f.life > 0);
+
+        if (on || confetti.length > 0 || fireworks.length > 0) {
+          confettiFrame = requestAnimationFrame(drawPartyFx);
         }
       }
 
@@ -793,11 +1005,62 @@
         const colors = ["#ff8f66", "#ffd166", "#18ebb0", "#3db5ff", "#ff5bbd"];
         b.className = "balloon";
         b.style.left = Math.random() * 100 + "%";
+        b.style.width = (20 + Math.random() * 20) + "px";
+        b.style.height = (28 + Math.random() * 24) + "px";
         b.style.background = colors[Math.floor(Math.random() * colors.length)];
-        b.style.setProperty("--drift", (-40 + Math.random() * 80) + "px");
-        b.style.animationDuration = (7 + Math.random() * 5) + "s";
+        b.style.setProperty("--drift", (-70 + Math.random() * 140) + "px");
+        b.style.animationDuration = (6 + Math.random() * 6) + "s";
         balloonLayer.appendChild(b);
         setTimeout(() => b.remove(), 13000);
+      }
+
+      function spawnEmoji() {
+        const e = document.createElement("span");
+        const emojis = ["🎉", "✨", "🥂", "🔥", "🎊", "🍾"];
+        e.className = "party-emoji";
+        e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        e.style.left = Math.random() * 100 + "%";
+        e.style.setProperty("--drift", (-70 + Math.random() * 140) + "px");
+        e.style.animationDuration = (4.5 + Math.random() * 3) + "s";
+        emojiLayer.appendChild(e);
+        setTimeout(() => e.remove(), 8000);
+      }
+
+      function showFloatingWindows() {
+        windowsLayer.innerHTML = "";
+        const items = [
+          { top: "12%", left: "8%", t1: "POOL ZONE", t2: "Swim + beats" },
+          { top: "24%", right: "8%", t1: "DJ SET", t2: "Project X mood" },
+          { bottom: "16%", left: "10%", t1: "SHOT CLOCK", t2: "Cada 30 min" },
+          { bottom: "12%", right: "10%", t1: "AFTER MODE", t2: "Hasta el amanecer" }
+        ];
+
+        items.forEach((it, idx) => {
+          const w = document.createElement("div");
+          w.className = "party-window";
+          if (it.top) w.style.top = it.top;
+          if (it.bottom) w.style.bottom = it.bottom;
+          if (it.left) w.style.left = it.left;
+          if (it.right) w.style.right = it.right;
+          w.style.animationDelay = (idx * 0.4) + "s";
+          w.innerHTML = "<strong>" + it.t1 + "</strong>" + it.t2;
+          windowsLayer.appendChild(w);
+          requestAnimationFrame(() => w.classList.add("show"));
+        });
+      }
+
+      function hideFloatingWindows() {
+        windowsLayer.innerHTML = "";
+      }
+
+      function playYoutube() {
+        if (!ytPlayer || !ytReady) return;
+        ytPlayer.playVideo();
+      }
+
+      function pauseYoutube() {
+        if (!ytPlayer || !ytReady) return;
+        ytPlayer.pauseVideo();
       }
 
       async function activate() {
@@ -805,16 +1068,18 @@
         btn.classList.add("active");
         btn.textContent = "Desactivar Modo Project X";
         strobe.classList.add("active");
+        ytDock.classList.add("show");
+        showFloatingWindows();
         resizeCanvas();
-        spawnConfettiBurst();
-        drawConfetti();
-        balloonInterval = setInterval(spawnBalloon, 480);
+        spawnConfettiBurst(1.15);
+        launchFirework();
+        drawPartyFx();
+        balloonInterval = setInterval(spawnBalloon, 340);
+        emojiInterval = setInterval(spawnEmoji, 420);
+        fireworkInterval = setInterval(launchFirework, 1500);
 
-        try {
-          await audio.play();
-        } catch (_) {
-          alert("No se pudo reproducir audio. Asegurate de tener fiesta-track.mp3 en la carpeta.");
-        }
+        ensureYouTubePlayer();
+        setTimeout(playYoutube, 900);
       }
 
       function deactivate() {
@@ -822,17 +1087,27 @@
         btn.classList.remove("active");
         btn.textContent = "Activar Modo Project X";
         strobe.classList.remove("active");
-        audio.pause();
-        audio.currentTime = 0;
+        ytDock.classList.remove("show");
+        hideFloatingWindows();
+        pauseYoutube();
+
         if (balloonInterval) clearInterval(balloonInterval);
+        if (emojiInterval) clearInterval(emojiInterval);
+        if (fireworkInterval) clearInterval(fireworkInterval);
         balloonInterval = null;
+        emojiInterval = null;
+        fireworkInterval = null;
+
         if (confettiFrame) cancelAnimationFrame(confettiFrame);
         confettiFrame = null;
+
         setTimeout(() => {
           confetti = [];
+          fireworks = [];
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           balloonLayer.innerHTML = "";
-        }, 200);
+          emojiLayer.innerHTML = "";
+        }, 180);
       }
 
       btn.addEventListener("click", () => {
@@ -845,6 +1120,7 @@
 
       window.addEventListener("resize", resizeCanvas);
       resizeCanvas();
+      ensureYouTubePlayer();
     }
 
     function setupCountdown() {
@@ -990,5 +1266,6 @@ END:VCALENDAR`;
     setupPartyMode();
     revealOnScroll();
   </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
