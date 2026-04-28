@@ -398,9 +398,9 @@
     .wa-btn:hover{transform:translateY(-3px);box-shadow:0 22px 58px rgba(37,211,102,0.55);}
 
     /* PARTY EFFECTS */
-    #confetti-canvas,#fireworks-canvas{position:fixed;inset:0;pointer-events:none;z-index:50;}
+    #confetti-canvas,#fireworks-canvas{position:fixed;inset:0;pointer-events:none;z-index:50;mix-blend-mode:screen;}
     #balloon-layer{position:fixed;inset:0;pointer-events:none;z-index:46;}
-    #strobe{position:fixed;inset:0;pointer-events:none;z-index:44;display:none;}
+    #strobe{position:fixed;inset:0;pointer-events:none;z-index:44;display:none;mix-blend-mode:screen;}
 
     .party-windows{position:fixed;inset:0;pointer-events:none;z-index:45;overflow:hidden;}
     .party-window{
@@ -594,33 +594,51 @@
       <div class="section-label" style="margin-top:64px;text-align:left;">Frases de la noche</div>
       <div class="frases-grid">
         <div class="frase-card">
-          <p>Aquí irá la primera frase épica de la noche, cortesía del crew más legendario.</p>
-          <span>— El crew</span>
+           <p>Fácil es decirlo, ser real es demostrarlo.</p>
+           <span>— The Reales</span>
         </div>
         <div class="frase-card">
-          <p>La segunda frase que recuerdes al día siguiente... si es que recuerdas algo.</p>
-          <span>— Nadie sabe quién</span>
+           <p>A mí me tiene sin cuidado lo que tú me digas cabrón, yo soy el más duro.</p>
+           <span>— Narc0party philosophy</span>
         </div>
         <div class="frase-card">
-          <p>Porque a veces las mejores noches no se planean, simplemente pasan.</p>
-          <span>— Filosofía narc0party</span>
+           <p>Tú no me vas a entender, lo que a ti te falta es nivel.</p>
+           <span>— El que sabe, sabe</span>
         </div>
       </div>
     </div>
   </section>
 
+    <!-- ═══ JAGER RULE ═══ -->
+    <section class="meme-section">
+      <div class="container">
+        <div class="section-label" style="text-align:center;">Requisito obligatorio</div>
+        <h2 class="section-title" style="text-align:center;">Bienvenido al Jäger Party</h2>
+        <div style="display:flex;justify-content:center;margin-top:30px;">
+          <div>
+            <div class="meme-card" style="border-color:#14a550;box-shadow:0 0 60px rgba(20,165,80,0.4),0 30px 80px rgba(0,0,0,0.6);">
+              <div class="meme-top-label" style="background:#14a550;">✅ REQUISITO OBLIGATORIO — NORMA 1</div>
+              <img src="jager.png" alt="Jager party" onerror="this.src='foto3.webp'" />
+              <div class="meme-bot-label">🦌 EN ESTE ÑO ESTÁ PROHIBIDO EL RON — ESTO ES UN JÄGER PARTY 🍶</div>
+            </div>
+            <p class="meme-caption">*El incumplimiento resultará en retiro inmediato del área de shots.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   <!-- ═══ ORGANIZADORES ═══ -->
   <section>
     <div class="container">
       <div class="section-label">Detrás de la leyenda</div>
-      <h2 class="section-title">Los organizadores</h2>
-      <p class="section-sub">El crew que hace posible la noche más épica del año.</p>
+        <h2 class="section-title">THE REALES</h2>
+        <p class="section-sub">Los que siempre están — los únicos — los reales.</p>
       <div class="org-wrap">
-        <img src="organizadores.png" alt="Los organizadores" onerror="this.src='foto1.webp'" />
+          <img src="organizadores.png" alt="The Reales" onerror="this.src='foto1.webp'" />
         <div class="org-overlay">
           <div>
-            <h3>El crew completo 🤝</h3>
-            <p>Los que siempre están — la familia de Aaron</p>
+              <h3>THE REALES 🤝</h3>
+              <p>El grupo que hace posible la noche más épica del año</p>
           </div>
         </div>
       </div>
@@ -642,6 +660,26 @@
           <p class="meme-caption">*El incumplimiento resultará en foto viral permanente en el grupo.</p>
         </div>
       </div>
+
+        <!-- LISTA DE PROHIBICIONES -->
+        <div style="margin-top:64px;">
+          <div class="section-label" style="text-align:center;">Lista completa de prohibiciones</div>
+          <h3 style="text-align:center;font-size:clamp(20px,4vw,36px);font-weight:800;color:#fff;margin-bottom:32px;margin-top:8px;">Lo que NO se permite en el narc0party</h3>
+          <div class="frases-grid">
+            <div class="frase-card" style="border-color:rgba(255,61,90,0.4);background:linear-gradient(135deg,rgba(255,61,90,0.08),rgba(255,61,90,0.03));">
+              <p style="font-style:normal;">🚫 Prohibición 1 — <em>próximamente</em></p>
+              <span>— Artículo 2</span>
+            </div>
+            <div class="frase-card" style="border-color:rgba(255,61,90,0.4);background:linear-gradient(135deg,rgba(255,61,90,0.08),rgba(255,61,90,0.03));">
+              <p style="font-style:normal;">🚫 Prohibición 2 — <em>próximamente</em></p>
+              <span>— Artículo 3</span>
+            </div>
+            <div class="frase-card" style="border-color:rgba(255,61,90,0.4);background:linear-gradient(135deg,rgba(255,61,90,0.08),rgba(255,61,90,0.03));">
+              <p style="font-style:normal;">🚫 Prohibición 3 — <em>próximamente</em></p>
+              <span>— Artículo 4</span>
+            </div>
+          </div>
+        </div>
     </div>
   </section>
 
