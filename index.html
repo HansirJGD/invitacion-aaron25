@@ -37,6 +37,19 @@
       position: relative;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: radial-gradient(circle at 50% 10%, #000 20%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .bg-blob {
       position: fixed;
       border-radius: 50%;
@@ -69,6 +82,20 @@
       place-items: center;
       text-align: center;
       padding: 56px 0 40px;
+    }
+
+    .hero-core {
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 30px 90px rgba(4, 14, 32, 0.5);
+      animation: heroFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     .chip {
@@ -137,12 +164,28 @@
     }
 
     .cd {
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--stroke);
       border-radius: 16px;
       background: var(--card);
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
       padding: 12px 10px;
+    }
+
+    .cd::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.18) 45%, transparent 70%);
+      transform: translateX(-120%);
+      animation: sweep 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sweep {
+      to { transform: translateX(120%); }
     }
 
     .cd-num {
@@ -192,6 +235,11 @@
     .section.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .section:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 24px 70px rgba(5, 20, 45, 0.45);
     }
 
     .section-label {
@@ -311,6 +359,7 @@
     .btn-primary:hover {
       filter: brightness(1.06);
       transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 16px 34px rgba(28, 168, 255, 0.45);
     }
 
     .tiny {
@@ -355,7 +404,7 @@
 
   <main class="container">
     <section class="hero">
-      <div>
+      <div class="hero-core">
         <div class="chip">Invitacion especial</div>
         <h1 class="name" id="nameText">Aaron Daniel Vilcanqui Maquera</h1>
         <div class="age" id="ageText" data-age="25">25</div>
@@ -368,7 +417,7 @@
           <div class="cd"><div class="cd-num" id="s">00</div><div class="cd-label">Seg</div></div>
         </div>
 
-        <div class="pulse" id="statusText">Preparando la mejor noche del anio</div>
+        <div class="pulse" id="statusText">Preparando la mejor noche del año</div>
       </div>
     </section>
 
@@ -532,6 +581,26 @@
       setInterval(tick, 1000);
     }
 
+    function setupStatusRotator() {
+      const status = $("statusText");
+      const messages = [
+        "Preparando la mejor noche del año",
+        "Pool vibes + música + gente top",
+        "Dress code activado, modo fiesta ON",
+        "Sábado de cumpleaños legendario"
+      ];
+
+      let i = 0;
+      setInterval(() => {
+        i = (i + 1) % messages.length;
+        status.style.opacity = "0.35";
+        setTimeout(() => {
+          status.textContent = messages[i];
+          status.style.opacity = "0.9";
+        }, 220);
+      }, 4200);
+    }
+
     function toICSDate(d) {
       const yyyy = d.getUTCFullYear();
       const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
@@ -616,6 +685,7 @@ END:VCALENDAR`;
     hydrateContent();
     mountGallery();
     setupCountdown();
+    setupStatusRotator();
     setupCalendar();
     setupShare();
     revealOnScroll();
