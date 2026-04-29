@@ -139,6 +139,14 @@
       margin-bottom:22px;
       background:rgba(0,0,0,0.2);backdrop-filter:blur(10px);
     }
+    .hero-avatar{
+      width:96px;height:96px;
+      margin:0 auto 14px;
+      border-radius:50%;overflow:hidden;
+      border:2px solid rgba(255,255,255,0.65);
+      box-shadow:0 10px 28px rgba(0,0,0,0.45),0 0 26px rgba(24,235,176,0.35);
+    }
+    .hero-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
     .name{
       font-size:clamp(32px,7.5vw,82px);
       font-weight:800;line-height:1.05;
@@ -346,15 +354,110 @@
     .idolo-wrap{
       margin-top:36px;
       border-radius:28px;
-      overflow:hidden;
       border:1px solid var(--stroke);
       background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));
       box-shadow:0 32px 90px rgba(0,0,0,0.55);
+      overflow:hidden;
     }
-    .idolo-wrap img{width:100%;display:block;object-fit:cover;max-height:720px;}
-    .idolo-copy{padding:22px 24px;border-top:1px solid var(--stroke);}
+    .idolo-media{
+      background:rgba(0,0,0,0.45);
+      padding:14px;
+    }
+    .idolo-media img{
+      width:100%;
+      max-height:760px;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      border-radius:16px;
+      background:#0a1226;
+    }
+    .idolo-copy{
+      padding:24px;
+      border-top:1px solid var(--stroke);
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
     .idolo-copy h3{font-size:clamp(22px,4vw,36px);font-weight:800;color:#fff;}
-    .idolo-copy p{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.65;}
+    .idolo-copy p{color:var(--muted);font-size:15px;line-height:1.65;}
+    .idolo-points{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+      gap:10px;
+      margin-top:4px;
+    }
+    .idolo-point{
+      border:1px solid var(--stroke);
+      border-radius:12px;
+      padding:10px 12px;
+      background:rgba(255,255,255,0.03);
+      font-size:12px;
+      letter-spacing:0.07em;
+      text-transform:uppercase;
+      color:#dbe8ff;
+      font-family:"JetBrains Mono",monospace;
+    }
+
+    /* INVITADOS ESPECIALES */
+    .invitados-wrap{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns:minmax(240px,320px) 1fr;
+      gap:16px;
+    }
+    .guest-list{
+      border:1px solid var(--stroke);
+      border-radius:22px;
+      padding:14px;
+      background:linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .guest-btn{
+      border:1px solid var(--stroke);
+      background:rgba(8,20,44,0.72);
+      color:#e8f2ff;
+      padding:12px 14px;
+      border-radius:12px;
+      text-align:left;
+      cursor:pointer;
+      font-family:"Sora",sans-serif;
+      font-size:14px;
+      transition:transform 0.2s,border-color 0.2s,background 0.2s;
+    }
+    .guest-btn:hover{transform:translateY(-2px);border-color:rgba(24,235,176,0.6);}
+    .guest-btn.active{
+      background:linear-gradient(120deg,rgba(24,235,176,0.22),rgba(61,181,255,0.2));
+      border-color:rgba(24,235,176,0.85);
+      color:#fff;
+    }
+    .guest-view{
+      border:1px solid var(--stroke);
+      border-radius:22px;
+      overflow:hidden;
+      background:linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
+      box-shadow:var(--shadow);
+    }
+    .guest-media{
+      background:#08142b;
+      min-height:320px;
+      display:grid;
+      place-items:center;
+      padding:14px;
+    }
+    .guest-media img{
+      width:100%;
+      max-height:540px;
+      object-fit:contain;
+      border-radius:14px;
+      background:#0a1226;
+    }
+    .guest-caption{padding:14px 18px;border-top:1px solid var(--stroke);}
+    .guest-caption h3{font-size:clamp(20px,3vw,30px);font-weight:800;color:#fff;}
+    .guest-caption p{margin-top:8px;color:var(--muted);font-size:14px;}
 
     /* MEME */
     .meme-section{
@@ -469,6 +572,9 @@
       .rsvp-box{padding:32px 20px;}
       .org-overlay{padding:20px;}
     }
+    @media(max-width:860px){
+      .invitados-wrap{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
@@ -516,6 +622,9 @@
     <div class="container">
       <div class="hero-core">
         <div class="chip">&#9733; Private Session &bull; Mayo 2026 &#9733;</div>
+        <div class="hero-avatar">
+          <img src="hero-central.png" alt="Imagen central" onerror="this.src='foto2.webp'" />
+        </div>
         <h1 class="name">Aaron Daniel</h1>
         <div class="age" data-age="25">25</div>
         <p class="subtitle" id="status-msg">Preparando la mejor noche del año 🔥</p>
@@ -709,14 +818,48 @@
         <h2 class="section-title">Un personaje, un ídolo</h2>
         <p class="section-sub">Inspiración total para la vibra de esta edición.</p>
         <div class="idolo-wrap">
-          <img src="idolo.png" alt="Personaje ídolo" onerror="this.src='foto4.webp'" />
+          <div class="idolo-media">
+            <img src="idolo.png" alt="Personaje ídolo" onerror="this.src='foto4.webp'" />
+          </div>
           <div class="idolo-copy">
             <h3>El ídolo oficial de la noche</h3>
-            <p>Presente en la factoría como referencia máxima de actitud, estilo y respeto.</p>
+            <p>Presencia de culto total para la factoría: esencia, estilo y actitud que marcan época.</p>
+            <div class="idolo-points">
+              <div class="idolo-point">AURA DE LEYENDA</div>
+              <div class="idolo-point">CÓDIGO DE CALLE</div>
+              <div class="idolo-point">VIBRA ORIGINAL</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+  <!-- ═══ INVITADOS ESPECIALES ═══ -->
+  <section>
+    <div class="container">
+      <div class="section-label">Invitados especiales</div>
+      <h2 class="section-title">Click en el nombre y aparece su foto</h2>
+      <p class="section-sub">Selección exclusiva de personajes confirmados para esta edición.</p>
+
+      <div class="invitados-wrap">
+        <div class="guest-list" id="guest-list">
+          <button class="guest-btn active" data-key="jabale">Jabale desde España</button>
+          <button class="guest-btn" data-key="priscila">Priscila su primer beso</button>
+          <button class="guest-btn" data-key="chivas">Las chivas crew</button>
+        </div>
+
+        <div class="guest-view">
+          <div class="guest-media">
+            <img id="guest-photo" src="invitado-jabale.png" alt="Invitado especial" onerror="this.src='foto1.webp'" />
+          </div>
+          <div class="guest-caption">
+            <h3 id="guest-name">Jabale desde España</h3>
+            <p id="guest-desc">Aterriza con presencia internacional y energía de primer nivel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══ RSVP ═══ -->
   <section>
@@ -1054,6 +1197,49 @@
       });
     }
     function clearWindows(){ document.getElementById("party-windows").innerHTML=""; }
+
+    // ═══ INVITADOS ESPECIALES (CLICK) ═══
+    const GUESTS = {
+      jabale: {
+        name: "Jabale desde España",
+        desc: "Aterriza con presencia internacional y energía de primer nivel.",
+        photo: "invitado-jabale.png"
+      },
+      priscila: {
+        name: "Priscila su primer beso",
+        desc: "Entrada estelar para elevar la vibra y prender la pista.",
+        photo: "invitada-priscila.png"
+      },
+      chivas: {
+        name: "Las chivas crew",
+        desc: "Bloque completo confirmado: actitud, estilo y show en grupo.",
+        photo: "invitadas-chivas.png"
+      }
+    };
+
+    function initInvitados() {
+      const buttons = document.querySelectorAll(".guest-btn");
+      const photo = document.getElementById("guest-photo");
+      const name = document.getElementById("guest-name");
+      const desc = document.getElementById("guest-desc");
+      if (!buttons.length || !photo || !name || !desc) return;
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.key;
+          const guest = GUESTS[key];
+          if (!guest) return;
+
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          photo.src = guest.photo;
+          name.textContent = guest.name;
+          desc.textContent = guest.desc;
+        });
+      });
+    }
+    initInvitados();
 
     window.addEventListener("resize",()=>{
       ["confetti-canvas","fireworks-canvas"].forEach(id=>{
