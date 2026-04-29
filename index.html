@@ -106,7 +106,7 @@
     }
     .hero-bg{
       position:absolute;inset:0;z-index:0;
-      background-image:url('organizadores.png');
+      background-image:url('the-reales-bg.png');
       background-size:cover;background-position:center 30%;
       filter:brightness(0.25) saturate(0.5);
       transition:filter 0.8s ease;
@@ -148,10 +148,11 @@
     }
     .age{
       font-family:"JetBrains Mono",monospace;
-      font-size:clamp(80px,18vw,190px);
+      font-size:clamp(108px,24vw,250px);
       line-height:0.9;color:transparent;
-      -webkit-text-stroke:2px rgba(255,209,102,0.5);
+      -webkit-text-stroke:3px rgba(255,209,102,0.88);
       margin-top:8px;position:relative;display:inline-block;
+      text-shadow:0 0 40px rgba(255,209,102,0.45);
     }
     .age::after{
       content:attr(data-age);position:absolute;inset:0;
@@ -341,6 +342,20 @@
     .org-overlay h3{font-size:clamp(20px,4vw,40px);font-weight:800;color:#fff;line-height:1.2;}
     .org-overlay p{color:var(--muted);font-size:14px;margin-top:6px;}
 
+    /* IDOLO */
+    .idolo-wrap{
+      margin-top:36px;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid var(--stroke);
+      background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));
+      box-shadow:0 32px 90px rgba(0,0,0,0.55);
+    }
+    .idolo-wrap img{width:100%;display:block;object-fit:cover;max-height:720px;}
+    .idolo-copy{padding:22px 24px;border-top:1px solid var(--stroke);}
+    .idolo-copy h3{font-size:clamp(22px,4vw,36px);font-weight:800;color:#fff;}
+    .idolo-copy p{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.65;}
+
     /* MEME */
     .meme-section{
       padding:60px 0 80px;
@@ -501,7 +516,7 @@
     <div class="container">
       <div class="hero-core">
         <div class="chip">&#9733; Private Session &bull; Mayo 2026 &#9733;</div>
-        <h1 class="name">Aaron Daniel<br>Vilcanqui Maquera</h1>
+        <h1 class="name">Aaron Daniel</h1>
         <div class="age" data-age="25">25</div>
         <p class="subtitle" id="status-msg">Preparando la mejor noche del año 🔥</p>
 
@@ -532,7 +547,7 @@
       <p class="section-sub">Todo lo que tienes que saber para no perderte la noche más épica del año.</p>
       <div class="info-grid">
         <div class="info-card">
-          <div class="info-icon">📅</div>
+          <div class="info-icon">📆</div>
           <h3>Fecha</h3>
           <p>Sábado 2 de mayo</p>
           <small>2026 — márcala ya</small>
@@ -546,14 +561,14 @@
         <div class="info-card">
           <div class="info-icon">📍</div>
           <h3>Lugar</h3>
-          <p>Por confirmar</p>
-          <small>Se informará próximamente</small>
+          <p>Información al privado</p>
+          <small>Te pasamos ubicación por interno</small>
         </div>
         <div class="info-card">
           <div class="info-icon">🎂</div>
           <h3>El cumpleañero</h3>
           <p>Aaron Daniel</p>
-          <small>25 años — Leyenda confirmada</small>
+          <small>25 años — narcopkflow</small>
         </div>
       </div>
     </div>
@@ -591,14 +606,14 @@
         Tú estás invitado a ser parte de la historia.
       </p>
 
-      <div class="section-label" style="margin-top:64px;text-align:left;">Frases de la noche</div>
+      <div class="section-label" style="margin-top:64px;text-align:left;">Factos que van en la factoria</div>
       <div class="frases-grid">
         <div class="frase-card">
-           <p>Fácil es decirlo, ser real es demostrarlo.</p>
+          <p>No es decir que eres real, es demostrarlo.</p>
            <span>— The Reales</span>
         </div>
         <div class="frase-card">
-           <p>A mí me tiene sin cuidado lo que tú me digas cabrón, yo soy el más duro.</p>
+          <p>Sin cojone' me tiene lo que tenga' que decir, cabrón (jeje). Yo soy el más duro.</p>
            <span>— Narc0party philosophy</span>
         </div>
         <div class="frase-card">
@@ -613,7 +628,7 @@
     <section class="meme-section">
       <div class="container">
         <div class="section-label" style="text-align:center;">Requisito obligatorio</div>
-        <h2 class="section-title" style="text-align:center;">Bienvenido al Jäger Party</h2>
+        <h2 class="section-title" style="text-align:center;">Bienvenido al Jagger Party</h2>
         <div style="display:flex;justify-content:center;margin-top:30px;">
           <div>
             <div class="meme-card" style="border-color:#14a550;box-shadow:0 0 60px rgba(20,165,80,0.4),0 30px 80px rgba(0,0,0,0.6);">
@@ -667,21 +682,41 @@
           <h3 style="text-align:center;font-size:clamp(20px,4vw,36px);font-weight:800;color:#fff;margin-bottom:32px;margin-top:8px;">Lo que NO se permite en el narc0party</h3>
           <div class="frases-grid">
             <div class="frase-card" style="border-color:rgba(255,61,90,0.4);background:linear-gradient(135deg,rgba(255,61,90,0.08),rgba(255,61,90,0.03));">
-              <p style="font-style:normal;">🚫 Prohibición 1 — <em>próximamente</em></p>
+              <p style="font-style:normal;">🚫 Prohibido dormir temprano</p>
               <span>— Artículo 2</span>
             </div>
             <div class="frase-card" style="border-color:rgba(255,61,90,0.4);background:linear-gradient(135deg,rgba(255,61,90,0.08),rgba(255,61,90,0.03));">
-              <p style="font-style:normal;">🚫 Prohibición 2 — <em>próximamente</em></p>
+              <p style="font-style:normal;">🚫 Prohibido estar sentado o aburrido</p>
               <span>— Artículo 3</span>
             </div>
             <div class="frase-card" style="border-color:rgba(255,61,90,0.4);background:linear-gradient(135deg,rgba(255,61,90,0.08),rgba(255,61,90,0.03));">
-              <p style="font-style:normal;">🚫 Prohibición 3 — <em>próximamente</em></p>
+              <p style="font-style:normal;">🚫 Prohibido venir sin jagger</p>
               <span>— Artículo 4</span>
+            </div>
+            <div class="frase-card" style="border-color:rgba(255,61,90,0.4);background:linear-gradient(135deg,rgba(255,61,90,0.08),rgba(255,61,90,0.03));">
+              <p style="font-style:normal;">🚫 Prohibido no divertirse</p>
+              <span>— Artículo 5</span>
             </div>
           </div>
         </div>
     </div>
   </section>
+
+    <!-- ═══ PERSONAJE / ÍDOLO ═══ -->
+    <section>
+      <div class="container">
+        <div class="section-label">Personaje</div>
+        <h2 class="section-title">Un personaje, un ídolo</h2>
+        <p class="section-sub">Inspiración total para la vibra de esta edición.</p>
+        <div class="idolo-wrap">
+          <img src="idolo.png" alt="Personaje ídolo" onerror="this.src='foto4.webp'" />
+          <div class="idolo-copy">
+            <h3>El ídolo oficial de la noche</h3>
+            <p>Presente en la factoría como referencia máxima de actitud, estilo y respeto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
   <!-- ═══ RSVP ═══ -->
   <section>
