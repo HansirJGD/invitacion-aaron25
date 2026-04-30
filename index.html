@@ -359,6 +359,34 @@
     .org-overlay h3{font-size:clamp(20px,4vw,40px);font-weight:800;color:#fff;line-height:1.2;}
     .org-overlay p{color:var(--muted);font-size:14px;margin-top:6px;}
 
+    .seguridad-block{
+      margin-top:34px;
+      border-radius:24px;
+      border:1px solid var(--stroke);
+      background:linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .seguridad-copy{padding:24px 24px 18px;text-align:center;}
+    .seguridad-copy .section-label{margin-bottom:8px;}
+    .seguridad-title{
+      font-size:clamp(34px,8vw,74px);
+      line-height:0.96;
+      letter-spacing:-0.03em;
+      font-weight:800;
+      text-transform:uppercase;
+      background:linear-gradient(115deg,#ffffff 0%,#ffd166 48%,#ff8f66 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow:0 0 30px rgba(255,209,102,0.25);
+    }
+    .seguridad-block img{
+      width:100%;
+      max-height:480px;
+      object-fit:cover;
+      display:block;
+      border-top:1px solid var(--stroke);
+    }
+
     /* IDOLO */
     .idolo-wrap{
       margin-top:36px;
@@ -806,6 +834,14 @@
               <p>El grupo que hace posible la noche más épica del año</p>
           </div>
         </div>
+      </div>
+
+      <div class="seguridad-block">
+        <div class="seguridad-copy">
+          <div class="section-label">Detalles del evento</div>
+          <div class="seguridad-title">Seguridad garantizada</div>
+        </div>
+        <img src="seguridad-garantizada.png" alt="Seguridad del evento" onerror="this.src='foto2.webp'" />
       </div>
     </div>
   </section>
