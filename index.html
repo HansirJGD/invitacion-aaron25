@@ -487,6 +487,47 @@
     }
     .meme-caption{margin-top:18px;color:var(--muted);font-size:14px;font-style:italic;}
 
+    /* GIF CALLOUT */
+    .gif-card{
+      margin:36px auto 0;
+      max-width:420px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--stroke);
+      box-shadow:0 24px 70px rgba(0,0,0,0.55);
+      background:rgba(6,13,30,0.75);
+    }
+    .gif-card img{width:100%;display:block;object-fit:cover;}
+    .gif-card .gif-label{
+      padding:12px 14px;
+      text-align:center;
+      font-family:"JetBrains Mono",monospace;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      font-size:11px;
+      color:#ffd166;
+      border-top:1px solid var(--stroke);
+    }
+
+    /* SIDE FLOATERS */
+    .side-floaters{position:fixed;inset:0;pointer-events:none;z-index:35;overflow:hidden;}
+    .side-floater{
+      position:absolute;
+      width:clamp(90px,12vw,150px);
+      aspect-ratio:1/1;
+      object-fit:cover;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.28);
+      box-shadow:0 18px 40px rgba(0,0,0,0.42);
+      opacity:0.82;
+      animation:sideSpin 10s linear infinite, sideFloat 6s ease-in-out infinite;
+      will-change:transform;
+    }
+    .side-floater.left{left:12px;top:26%;}
+    .side-floater.right{right:12px;top:58%;animation-direction:reverse,normal;}
+    @keyframes sideSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+    @keyframes sideFloat{0%,100%{margin-top:0;}50%{margin-top:-14px;}}
+
     /* RSVP */
     .rsvp-box{
       margin-top:40px;padding:52px 40px;
@@ -584,6 +625,12 @@
   <div class="bg-blob blob-a"></div>
   <div class="bg-blob blob-b"></div>
   <div class="bg-blob blob-c"></div>
+
+  <!-- SIDE FLOATING STICKERS -->
+  <div class="side-floaters" aria-hidden="true">
+    <img class="side-floater left" src="ghost-lateral.png" alt="" onerror="this.src='meme.png'" />
+    <img class="side-floater right" src="ghost-lateral.png" alt="" onerror="this.src='meme.png'" />
+  </div>
 
   <!-- AUDIO -->
   <audio id="audio-el" src="fiesta-track.m4a" preload="auto" loop></audio>
@@ -766,6 +813,13 @@
   <!-- ═══ MEME ═══ -->
   <section class="meme-section">
     <div class="container">
+      <div class="section-label" style="text-align:center;">Mensaje de bienvenida</div>
+      <h2 class="section-title" style="text-align:center;">¿Quién chch eres tú?</h2>
+      <div class="gif-card">
+        <img src="https://media1.tenor.com/m/Djwrz5PDNJcAAAAd/quien-chch-eres-tu-wbn-quien-chucha-eres-tu-weon.gif" alt="Gif quien chch eres tu" loading="lazy" />
+        <div class="gif-label">Mood de recepción oficial</div>
+      </div>
+
       <div class="section-label" style="text-align:center;">Advertencia oficial del evento</div>
       <h2 class="section-title" style="text-align:center;">Reglamento narc0party</h2>
       <div style="display:flex;justify-content:center;margin-top:30px;">
